@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<div class="table-responsive">
+<table class="table table-striped">
+    <caption class="text-info">PORTFOLIO</caption>
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Current Price</th>
+            <th>Purchase Price</th>
+            <th>Total Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in stocks %}
+        <tr>
+            <td>{{ stock.symbol }}</td>
+            <td>{{ stock.name }}</td>
+            <td>{{ stock.amount }}</td>
+            <td>{{ "${:.2f}".format(stock.currentprice) }}</td>
+            <td>{{ "${:.2f}".format(stock.purchaseprice) }}</td>
+            <td>{{ "${:.2f}".format(stock.currentprice*stock.amount) }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="5">
+                CASH
+            </td>
+            <td>
+                {{"${:.2f}".format(balance)}}
+            </td>
+        </tr>
+        <tr>
+            <td class="text-info" colspan="5">
+                PORTFOLIO VALUE
+            </td>
+            <td class="text-info">
+                {{ "${:.2f}".format(total_value) }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<div class="table-responsive">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Buy or Sell</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in history %}
+        <tr>
+            <td>{{ transaction.symbol | capitalize() }}</td>
+            <td>{{ transaction.shares }}</td>
+            <td>{{ transaction.buyorsell }}</td>
+            <td>{{ "${:.2f}".format(transaction.price) }}</td>
+            <td>{{ transaction.date }}</td    >
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}
